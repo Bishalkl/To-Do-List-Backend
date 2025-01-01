@@ -12,6 +12,7 @@
     <div class="input-group">
       <!-- Form sending data to HandleData.php to add a new task -->
       <form action="HandleData.php" method="POST">
+        <input type="hidden" name="action" value="add">
         <input type="text" id="task-input" placeholder="Add a new task" name="task" required>
         <button type="submit" id="add-task-btn" >Add</button>
       </form>
