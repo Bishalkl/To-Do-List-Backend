@@ -1,0 +1,164 @@
+/* Reset some default styles */
+body,
+h1,
+form,
+input,
+button {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f7f9fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+/* Container for the to-do app */
+.todo-container {
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Input group for task input */
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#task-input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #dfe3e6;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#task-input:focus {
+  border-color: #007bff;
+}
+
+#add-task-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#add-task-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+#task-list {
+  margin-top: 20px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #dfe3e6;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.task:hover {
+  background-color: #e8f0fe;
+  transform: scale(1.02);
+}
+
+.task h3 {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+  flex: 1;
+  word-wrap: break-word;
+}
+
+/* Edit and Delete Buttons */
+.task-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.task-actions button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.edit-btn {
+  background-color: #ffcc00;
+  color: #fff;
+}
+
+.edit-btn:hover {
+  background-color: #e6b800;
+}
+
+.delete-btn {
+  background-color: #ff4d4d;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #cc0000;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+  .todo-container {
+    padding: 15px;
+  }
+
+  #task-input {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  #add-task-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .task {
+    padding: 8px;
+  }
+
+  .task-actions button {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+}
