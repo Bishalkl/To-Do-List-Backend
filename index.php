@@ -7,55 +7,49 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="todo-container">
-    <h1>To-Do List</h1>
-    <div class="input-group">
-      <!-- Form sending data to HandleData.php to add a new task -->
+  <div class="container">
+    <h2>To-Do List</h2>
+    <div>
       <form action="HandleData.php" method="POST">
         <input type="hidden" name="action" value="add">
-        <input type="text" id="task-input" placeholder="Add a new task" name="task" required>
-        <button type="submit" id="add-task-btn" >Add</button>
+        <input type="text" id="todoInput" placeholder="Add a new task" name="task" required>
+        <button type="submit">Add</button>
       </form>
     </div>
-    <div id="task-list">
+    <ul id="todoList">
       <?php
-      // Load and decode the JSON data
-      $datafile = 'data.json';
-      if (file_exists($datafile)) {
-        $jsonData = file_get_contents($datafile);
-        $tasks = json_decode($jsonData, true);
+        // Load the file from JSON
+        $datafile = 'data.json';
+        if(file_exists($datafile)) {
+          $jsonData = file_get_contents($datafile);
+          $tasks = json_decode($jsonData, true);
+        }
 
-        // Check if the data was properly decoded
-        if ($tasks) {
-          foreach ($tasks as $index => $task) {
-            echo '<div class="task">';
-            echo '<h3>' . htmlspecialchars($task['task']) . '</h3>'; // Display task title
+        // Check the data
+        if($tasks) {
+          foreach($tasks as $index => $task) {
+            echo '<li id="task-' . htmlspecialchars($task['id']) . '">';
+            echo '<h3>' . htmlspecialchars($task['task']) . '</h3>';
 
-            // Edit and Delete Buttons
-            echo '<form action="HandleData.php" method="POST" class="task-actions">';
-            echo '<input type="hidden" name="action" value="edit">';
-            echo '<input type="hidden" name="id" value="' . htmlspecialchars($task['id']) . '">';
-            echo '<button type="submit" class="edit-btn">Edit</button>';
-            echo '</form>';
 
+            // Edit Button: Open edit form for this task
+            echo '<button class="edit-btn" onclick="editTask(\'' . htmlspecialchars($task['id']) . '\', \'' . htmlspecialchars($task['task']) . '\')">Edit</button>';
+
+
+            // Form for deleting the task
             echo '<form action="HandleData.php" method="POST" class="task-actions">';
             echo '<input type="hidden" name="action" value="delete">';
             echo '<input type="hidden" name="id" value="' . htmlspecialchars($task['id']) . '">';
             echo '<button type="submit" class="delete-btn">Delete</button>';
             echo '</form>';
 
-            echo '</div>';
-          }
+            echo '</li>';
+          };
         } else {
-          echo '<p>No tasks found.</p>';
+          echo "Please add a task.";
         }
-      } else {
-        echo '<p>Error: data.json file not found.</p>';
-      }
       ?>
-    </div>
+    </ul>
   </div>
-  
   <script src="/script.js"></script>
 </body>
-</html>
